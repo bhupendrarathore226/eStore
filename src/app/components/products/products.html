@@ -1,18 +1,21 @@
- 
- <div class="flex flex-wrap justify-evenly">
+<div class="flex flex-wrap justify-evenly">
+  @for (item of products$ | async; track item.id) {
   <div class="mx-4 p-3 mt-4 mb-4 flex flex-col rounded-lg shadow-md">
     <div class="overflow-hidden rounded-md aspect-[3/4] bg-gray-100">
-      <img
-        class="rounded-md mx-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
-          src="assets/images/shop-1.jpg"
-        alt="Jacket"
-      />
+      <img class="rounded-md mx-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
+        [src]="'assets/images/'+item.imageUrl+'.jpg'" [alt]="item.name" />
     </div>
     <div class="p-4 text-center">
       <h5 class="font-semibold">
-        <a href="#" class="text-black hover:text-black no-underline">Jacket</a>
+        <a href="#" class="text-black hover:text-black no-underline">{{item.name}}</a>
       </h5>
-      <p class="text-base font-normal mt-1">$45</p>
+      <p class="text-base font-normal mt-1">{{item.price | currency}}</p>
+      @if(item.rating>0){
+      <ng-container>
+        <app-ratings [score]="item.rating"></app-ratings>
+      </ng-container>
+      }
     </div>
   </div>
+  }
 </div>
