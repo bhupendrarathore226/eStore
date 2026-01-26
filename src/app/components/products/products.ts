@@ -16,6 +16,6 @@ export class Products {
   constructor(private productService: Productservice) {
   }
   ngOnInit() {
-  this.products$ = this.productService.getProductsList();
-}
+    this.products$ = this.productService.getProductsList();
+  }
 }

@@ -23,8 +23,14 @@ private handleError(error: any) {
    */
   getProductsList(): Observable<ProductListItems[]> {
     return this.http.get<ProductListItems[]>(this.apiUrl)
-      .pipe(catchError(this.handleError) 
-          );
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching products from API:', error);
+          console.log('------------ local product data used ------------- ');
+           console.log(PRODUCTS);
+          return of(PRODUCTS);
+        })
+      );
   }
 
   /**
@@ -92,7 +98,6 @@ private handleError(error: any) {
           console.error('Error deleting product:', error);
           throw error;
         })
-        
       );
   }
 }
