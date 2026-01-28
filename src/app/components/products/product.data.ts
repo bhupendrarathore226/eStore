@@ -2,7 +2,7 @@ import { ProductListItems } from './product.type';
 export const PRODUCTS: ProductListItems[] = [
     {
         id: 1,      
-        name: 'Smartphone',
+        name: 'Smartphoneeee',
         description: 'A high-end smartphone with a sleek design and powerful features.',
         price: 79.99,
         category: 'Electronics',    

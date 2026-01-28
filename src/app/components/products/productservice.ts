@@ -9,7 +9,7 @@ import { Products } from './products';
   providedIn: 'root'
 })
 export class Productservice {
-  private apiUrl = 'http://localhost:3000/api/'; // Backend API endpoint
+  private apiUrl = 'http://localhost:3000/api/products'; // Backend API endpoint
 
   constructor(private http: HttpClient) { }
 private handleError(error: any) {
