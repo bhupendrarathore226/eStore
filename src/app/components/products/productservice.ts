@@ -26,10 +26,9 @@ private handleError(error: any) {
       .pipe(
         catchError(error => {
           console.error('Error fetching products from API:', error);
-          console.log('------------ local product data used ------------- ');
-           console.log(PRODUCTS);
+          
           return of(PRODUCTS);
-        })
+        })  
       );
   }
 
