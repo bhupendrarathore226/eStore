@@ -9,7 +9,7 @@ import { Products } from './products';
   providedIn: 'root'
 })
 export class Productservice {
-  private apiUrl = 'http://localhost:3000/api/products'; // Backend API endpoint
+  private apiUrl = 'http://localhost:3000/api/'; // Backend API endpoint
 
   constructor(private http: HttpClient) { }
 private handleError(error: any) {
@@ -36,7 +36,7 @@ private handleError(error: any) {
    * Fetch a single product by ID from MySQL
    */
   getProductById(id: number): Observable<ProductListItems> {
-    return this.http.get<ProductListItems>(`${this.apiUrl}/${id}`)
+    return this.http.get<ProductListItems>(`${this.apiUrl}/products/${id}`)
       .pipe(
         catchError(error => {
           console.error('Error fetching product by ID:', error);
