@@ -1,5 +1,9 @@
-export interface Category {
-  id: number;
+export interface Category { 
+  categoryTypeId: number;
+  categoryType: string;
+  categories: Categories[];
+}
+export interface Categories { 
+  categoryId: number;
   category: string;
-  parent_category_id?: number;
 }
