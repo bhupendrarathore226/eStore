@@ -1,2 +1,8 @@
 
+ <app-header></app-header>
+ @if(toast.message()) {
+   <div class="fixed top-4 right-4 bg-black text-white px-4 py-2 rounded shadow">
+     {{ toast.message() }}
+   </div>
+ }
  <router-outlet></router-outlet>

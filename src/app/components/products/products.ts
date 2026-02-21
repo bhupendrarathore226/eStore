@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Productservice } from './productservice';
 import { ProductListItems } from'./product.type';// Adjust the path as needed
 import { CommonModule } from '@angular/common';
 import { Ratings } from "../ratings/ratings";
-import { Observable } from 'rxjs';
+import { Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { CartStore } from '../../store/cart.store';
+
 @Component({
   selector: 'app-products',
   imports: [CommonModule, Ratings],
@@ -12,10 +15,27 @@ import { Observable } from 'rxjs';
   providers: [ Productservice]
 })
 export class Products {
-  products$!: Observable<ProductListItems[]>;
-  constructor(private productService: Productservice) {
+  products!: Signal<ProductListItems[]>;
+  addedItem = signal<number | null>(null);
+
+  constructor(
+    private productService: Productservice,
+    private cartStore: CartStore
+  ) {
+    this.products = toSignal(this.productService.getProductsList(), { initialValue: [] });
   }
-  ngOnInit() {
-    this.products$ = this.productService.getProductsList();
+
+  ngOnInit() {}
+
+  addToCart(item: ProductListItems) {
+    this.cartStore.addToCart({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      imageUrl: item.imageUrl,
+    });
+    // simple animation trigger
+    this.addedItem.set(item.id);
+    setTimeout(() => this.addedItem.set(null), 400);
   }
 }

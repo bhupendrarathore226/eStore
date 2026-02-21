@@ -36,7 +36,7 @@ import { pool } from '../../config/database';
         });
       }
 
-      return acc;
+       return acc;
 
     }, []);
 
